@@ -1,13 +1,41 @@
-class Vehicle {
-  constructor(para_name, para_modal) {
-    this.name = para_name;
-    this.type = 'car';
-    this.model = para_modal;
-  }
+import { todoCard } from './UI.js';
+
+const todo = JSON.parse(localStorage.getItem('todo')) || [];
+
+for (let i = 0; i < todo.length; i++) {
+  todoCard(todo[i]);
 }
 
-const car1 = new Vehicle('Honda', 'Civic');
-const car2 = new Vehicle('Toyota', 'Corolla');
+const D = document;
 
-console.log(car1);
-console.log(car2);
+const addButton = D.getElementById('add-button'),
+  taskInput = D.getElementById('task-input'),
+  taskTime = D.getElementById('task-time'),
+  todoWrapper = D.getElementById('todo-wrapper');
+
+addButton.addEventListener('click', () => {
+  const value = taskInput.value;
+  const time = taskTime.value;
+
+  // ! SCOPE OF IMPROVEMENT
+  // ----------------------
+
+  if (!value) {
+    return alert('Please enter a task');
+  }
+  if (!time) {
+    return alert('Please enter a time');
+  }
+  // const { value } = taskInput;
+  const todoObject = {
+    task: value,
+    time: time,
+    completed: false,
+  };
+
+  todoCard(todoObject);
+
+  todo.push(todoObject);
+
+  localStorage.setItem('todo', JSON.stringify(todo));
+});

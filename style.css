@@ -4,16 +4,106 @@
     box-sizing: border-box;
 }
 
-#wrapper {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #3C4048;
+body {
+    background-color: #00ABB3;
+    color: #EEEEEE;
+    font-family: 'Raleway';
 }
 
-#title {
+.container {
+    max-width: 80%;
+    min-height: 100vh;
+    max-height: 100vh;
+    margin: auto;
+    overflow: scroll;
+
+    background-color: #3C4048;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.container::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
+}
+
+#controller {
+
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+#task-input {
+    width: 300px;
+    padding: 1rem;
+    border: 1px solid #FF6464;
+    box-shadow: -11px 8px 49px -3px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: -11px 8px 49px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -11px 8px 49px -3px rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+    margin-bottom: 1rem;
+
+}
+
+#todo-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#add-button {
+    width: 300px;
+    padding: 1rem;
+    border: 1px solid #FF6464;
+    box-shadow: -11px 8px 49px -3px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: -11px 8px 49px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -11px 8px 49px -3px rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+    background-color: #FF6464;
+    color: #F6F6C9;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#task-time {
+    width: 300px;
+    padding: 1rem;
+    border: 1px solid #FF6464;
+    box-shadow: -11px 8px 49px -3px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: -11px 8px 49px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -11px 8px 49px -3px rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.todo-card {
+    min-height: 100px;
+    width: 300px;
+    margin-inline: auto;
+    border: 3px solid #FF6464;
+    background-color: #EEEEEE;
     color: #00ABB3;
-    font-size: 3rem;
+    margin: 1rem 2rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-card>h3 {
+    margin-bottom: 1rem;
+    font-size: 1.9rem;
+    font-weight: bolder;
+}
+
+.todo-card>h6 {
+    margin-bottom: 1rem;
+    font-size: 1.7rem;
 }
