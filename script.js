@@ -1,41 +1,42 @@
-import { todoCard } from './UI.js';
+// const Person = function (name, age) {
+//   this.name = name;
+//   this.age = age;
+// };
 
-const todo = JSON.parse(localStorage.getItem('todo')) || [];
+// console.log('Person.prototype', Person.prototype);
 
-for (let i = 0; i < todo.length; i++) {
-  todoCard(todo[i]);
-}
+// const john = new Person('John', 30);
+// const jane = new Person('Jane', 25);
 
-const D = document;
+// console.log(john)
+// console.log(john.name);
+// console.log(john.age);
+// console.log('[[Prototype]]', john.__proto__);
 
-const addButton = D.getElementById('add-button'),
-  taskInput = D.getElementById('task-input'),
-  taskTime = D.getElementById('task-time'),
-  todoWrapper = D.getElementById('todo-wrapper');
+// Application Show Room
+const Users = function (name, address, car) {
+  this.name = name;
+  this.address = address;
+  this.car = car;
+};
 
-addButton.addEventListener('click', () => {
-  const value = taskInput.value;
-  const time = taskTime.value;
+Users.prototype.country = 'India';
+Users.prototype.type = 'User';
+Users.prototype.payment = function () {
+  // ASK FOR PAYMENT
+  console.log('Payment is done');
+};
+Users.prototype.notify = function () {
+  // NOTIFY USER
+  console.log('NOTIFY USER');
+};
 
-  // ! SCOPE OF IMPROVEMENT
-  // ----------------------
+const u1 = new Users('John', 'Delhi', 'BMW');
+const u2 = new Users('Jane', 'Mumbai', 'Audi');
+const u3 = new Users('Jack', 'Bangalore', 'Maruti');
 
-  if (!value) {
-    return alert('Please enter a task');
-  }
-  if (!time) {
-    return alert('Please enter a time');
-  }
-  // const { value } = taskInput;
-  const todoObject = {
-    task: value,
-    time: time,
-    completed: false,
-  };
+console.log(u1);
+console.log(u1.__proto__.type);
+u1.__proto__.payment();
+u1.__proto__.notify();
 
-  todoCard(todoObject);
-
-  todo.push(todoObject);
-
-  localStorage.setItem('todo', JSON.stringify(todo));
-});
