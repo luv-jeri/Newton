@@ -1,40 +1,46 @@
-// #new keyword
-// * new keyword id going to create a blank object for us
-// * it will change the this keyword poniter to the new object
-// * it is going to make variable points to the new object
+// # HOW WE CAN CREATE OBJECT
+// # 1. Object Literal
+const obj = { name: 'Sanjay' };
 
-// function Vehilce(name, company, year) {
-//   this.name = name;
-//   this.company = company;
-//   this.year = year;
-// }
+// # 2. Factory Function
+const createPerson = (name, age) => {
+  return {
+    name,
+    age,
+    sayHello: function () {
+      console.log(`Hello ${this.name}`);
+    },
+  };
+};
+const p1 = createPerson('Sanjay', 25);
+const p2 = createPerson('Raj', 26);
+p1.sayHello();
 
-// const car1 = new Vehilce('Civic', 'Honda', 2019);
-// const car2 = new Vehilce('Accord', 'Honda', 2019);
-
-// console.log('car1', car1);
-// console.log('car2', car2);
-
-function Person(name, age, job) {
+// # 3. Constructor Function
+const Vehicle = function ({
+  name = 'Vehilce',
+  color = 'Default Color',
+  model = 'Random Model',
+  price = '000000',
+}) {
   this.name = name;
-  this.age = age;
-  this.job = job;
+  this.color = color;
+  this.model = model;
+  this.price = price;
 
-  this.sayHello = function () {
-    console.log('Hello', this.name);
+  this.getDetails = function () {
+    console.log(
+      `Name: ${this.name}, Color: ${this.color}, Model: ${this.model}, Price: ${this.price}`
+    );
   };
+};
 
-  this.showDetails = function () {
-    console.log('Name', this.name);
-    console.log('Age', this.age);
-    console.log('Job', this.job);
-  };
-}
+const v1 = new Vehicle({
+  name: 'BMW',
+  color: 'Black',
+  model: 'X5',
+  price: undefined,
+});
 
-const sanjay = new Person('Sanjay', 23, 'Developer');
-const rahul = new Person('Rahul', 24, 'Developer');
-const ravi = new Person('Ravi', 25, 'Developer');
 
-console.log('sanjay', sanjay);
-console.log('rahul', rahul);
-console.log('ravi', ravi);
+
