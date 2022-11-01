@@ -188,7 +188,7 @@ Person.prototype.breadth = function () {
 function Developer(skill, name, age) {
   this.skill = skill;
 
-  Person.call(this, name, age);
+  Person.call(this, name, age); // ! Tell me the reason
 }
 
 Developer.prototype.code = function () {
