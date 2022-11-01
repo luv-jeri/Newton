@@ -176,9 +176,29 @@
 
 // console.log(bool_.valueOf());
 
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
 
+Person.prototype.breadth = function () {
+  console.log(`${this.name} is breathing`);
+};
 
+function Developer(skill, name, age) {
+  this.skill = skill;
 
+  Person.call(this, name, age);
+}
 
+Developer.prototype.code = function () {
+  console.log('coding');
+};
 
+Developer.prototype.__proto__ = Person.prototype;
 
+const dev1 = new Developer('JS', 'john', 32);
+
+console.log(dev1);
+
+dev1.breadth();
