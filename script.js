@@ -1,41 +1,58 @@
-import { todoCard } from './UI.js';
+// const promise = new Promise((resolve, reject) => {
+//   const button = document.querySelectorAll('button');
+//   if (button.length > 0) {
+//     resolve(button);
+//   } else {
+//     reject("No button in UI");
+//   }
+// });
 
-const todo = JSON.parse(localStorage.getItem('todo')) || [];
+// promise.then((data) => {
+//   console.log('Promise resolved ', data);
+// });
 
-for (let i = 0; i < todo.length; i++) {
-  todoCard(todo[i]);
-}
+// promise.catch((err) => {
+//   console.log('We failed 🥲', data);
+// });
 
-const D = document;
+const url = 'https://jsonplaceholder.typicode.com/users';
 
-const addButton = D.getElementById('add-button'),
-  taskInput = D.getElementById('task-input'),
-  taskTime = D.getElementById('task-time'),
-  todoWrapper = D.getElementById('todo-wrapper');
+const fetchData = (url) => {
+  const promise = new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.send();
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        resolve(xhr.response);
+      } else {
+        reject('Something went wrong');
+      }
+    };
 
-addButton.addEventListener('click', () => {
-  const value = taskInput.value;
-  const time = taskTime.value;
+    xhr.onerror = () => {
+      reject('Something went wrong');
+    };
+  });
+  return promise;
+};
 
-  // ! SCOPE OF IMPROVEMENT
-  // ----------------------
-
-  if (!value) {
-    return alert('Please enter a task');
-  }
-  if (!time) {
-    return alert('Please enter a time');
-  }
-  // const { value } = taskInput;
-  const todoObject = {
-    task: value,
-    time: time,
-    completed: false,
-  };
-
-  todoCard(todoObject);
-
-  todo.push(todoObject);
-
-  localStorage.setItem('todo', JSON.stringify(todo));
+const promise = fetchData(url);
+promise.then((data) => {
+  console.log('Promise resolved ', data);
 });
+
+// const promise = fetch(url);
+
+// promise.then((responce) => {
+
+//   const jsonPromise = responce.json();
+//   jsonPromise.then((data) => {
+//     console.log(data);
+//   });
+
+// });
+
+// promise.catch((err) => {
+//   console.log('We failed 🥲', err);
+// });
