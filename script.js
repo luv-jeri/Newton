@@ -1,25 +1,42 @@
-try {
-  const promise = fetch('https://jsonplaceholder.typicode.com/users');
+const title = document.getElementById('title');
 
-  const res = await promise;
-  const data = await res.json();
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 
-  console.log(data);
-} catch (e) {
-  console.log(e);
-} finally {
-  console.log('I run regardless of the result');
-}
+const showTime = () => {
+  const time = new Date();
 
-// promise.then((data)=>{
-//   console.log(data)
-// })
+  const month = time.getMonth();
 
-// try {
-//   console.log('line1');
-//   console.log('line2');
-//   console.log('line3');
-//   console.log('line');
-// } catch (err) {
-//   console.log('Fallback', err);
-// }
+  const hours = time.getHours();
+  const minutes = time.getMinutes();
+  const seconds = time.getSeconds();
+
+  title.innerHTML = `${hours}:${minutes}:${seconds} - ${months[month]}`;
+};
+
+let timer = setInterval(() => {
+  showTime();
+}, 1000);
+
+title.addEventListener('mouseenter', () => {
+  clearInterval(timer);
+});
+
+title.addEventListener('mouseleave', () => {
+  timer = setInterval(() => {
+    showTime();
+  }, 1000);
+});
